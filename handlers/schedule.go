@@ -1,3 +1,12 @@
+// handlers/schedules.go
+// @Summary Get today's schedules
+// @Description Get all schedules for the current day
+// @Tags schedules
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} models.Schedule
+// @Failure 500 {object} map[string]string
+// @Router /schedules/today [get]
 package handlers
 
 import (
@@ -12,10 +21,28 @@ import (
 
 var schedules = models.GenerateMockSchedules()
 
+// handlers/schedules.go
+// @Summary Get today's schedules
+// @Description Get all schedules for the current day
+// @Tags schedules
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} models.Schedule
+// @Failure 500 {object} map[string]string
+// @Router /schedules/today [get]
 func GetAllSchedules(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, schedules)
 }
 
+// handlers/schedules.go
+// @Summary Get today's schedules
+// @Description Get all schedules for the current day
+// @Tags schedules
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} models.Schedule
+// @Failure 500 {object} map[string]string
+// @Router /schedules/today [get]
 func GetTodaySchedules(w http.ResponseWriter, r *http.Request) {
 	now := time.Now()
 	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
@@ -30,6 +57,15 @@ func GetTodaySchedules(w http.ResponseWriter, r *http.Request) {
 	respondWithJSON(w, http.StatusOK, todaySchedules)
 }
 
+// handlers/schedules.go
+// @Summary Get schedules Detail
+// @Description Get detail schedules for the current day
+// @Tags schedules
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} models.Schedule
+// @Failure 500 {object} map[string]string
+// @Router /schedules/today [get]
 func GetScheduleDetails(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	scheduleID := params["id"]
@@ -44,6 +80,18 @@ func GetScheduleDetails(w http.ResponseWriter, r *http.Request) {
 	respondWithError(w, http.StatusNotFound, "Schedule not found")
 }
 
+// @Summary Start a visit
+// @Description Record the start of a caregiver visit with geolocation
+// @Tags visits
+// @Accept  json
+// @Produce  json
+// @Param id path string true "Schedule ID"
+// @Param coordinates body StartVisitRequest true "Location coordinates"
+// @Success 200 {object} models.Schedule
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /schedules/{id}/start [post]
 func StartVisit(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	scheduleID := params["id"]
@@ -76,6 +124,18 @@ func StartVisit(w http.ResponseWriter, r *http.Request) {
 	respondWithError(w, http.StatusNotFound, "Schedule not found")
 }
 
+// @Summary End a visit
+// @Description Record the edn of a caregiver visit with geolocation
+// @Tags visits
+// @Accept  json
+// @Produce  json
+// @Param id path string true "Schedule ID"
+// @Param coordinates body StartVisitRequest true "Location coordinates"
+// @Success 200 {object} models.Schedule
+// @Failure 400 {object} map[string]string
+// @Failure 404 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /schedules/{id}/start [post]
 func EndVisit(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	scheduleID := params["id"]

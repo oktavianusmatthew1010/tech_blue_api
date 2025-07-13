@@ -1,14 +1,25 @@
+// main.go
+// @title Caregiver Scheduling API
+// @version 1.0
+// @description API for Tech Blue API
+// @contact.name Oktavianus
+// @contact.email oktavianus.programmer@gmail.com
+// @license.name MIT
+// @host localhost:8080
+// @BasePath /api/v1
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
 package main
 
 import (
 	"log"
 	"net/http"
 
-	routes "github.com/oktavianusmatthew1010/tech_blue_api/routers"
-	"github.com/rs/cors"
-
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
+	routes "github.com/oktavianusmatthew1010/tech_blue_api/routers"
+	"github.com/rs/cors"
 )
 
 func main() {

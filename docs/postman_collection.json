@@ -1,0 +1,48 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890",
+    "name": "Caregiver Scheduling API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Today's Schedules",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/schedules/today",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["schedules", "today"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Start Visit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"latitude\": 34.052235,\n    \"longitude\": -118.243683\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/schedules/1/start",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["schedules", "1", "start"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
